@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR base — Чек-лист найма: джуниор, мидл или сеньор?</title>
+    <style>
+        :root {
+  /* Primitive Color Tokens */
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-teal-800: rgba(41, 150, 161, 1);
+  --color-red-400: rgba(255, 84, 89, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-orange-400: rgba(230, 129, 97, 1);
+  --color-orange-500: rgba(168, 75, 47, 1);
+
+  /* RGB versions for opacity control */
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-red-500-rgb: 192, 21, 47;
+  --color-red-400-rgb: 255, 84, 89;
+  --color-orange-500-rgb: 168, 75, 47;
+  --color-orange-400-rgb: 230, 129, 97;
+
+  /* Background color tokens (Light Mode) */
+  --color-bg-1: rgba(59, 130, 246, 0.08);
+  --color-bg-2: rgba(245, 158, 11, 0.08);
+  --color-bg-3: rgba(34, 197, 94, 0.08);
+  --color-bg-4: rgba(239, 68, 68, 0.08);
+  --color-bg-5: rgba(147, 51, 234, 0.08);
+  --color-bg-6: rgba(249, 115, 22, 0.08);
+  --color-bg-7: rgba(236, 72, 153, 0.08);
+  --color-bg-8: rgba(6, 182, 212, 0.08);
+
+  /* Semantic Color Tokens (Light Mode) */
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-btn-primary-text: var(--color-cream-50);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-error: var(--color-red-500);
+  --color-success: var(--color-teal-500);
+  --color-warning: var(--color-orange-500);
+  --color-info: var(--color-slate-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+  /* Custom purple/lavender accent */
+  --color-accent: rgba(147, 51, 234, 1);
+  --color-accent-light: rgba(147, 51, 234, 0.1);
+  --color-accent-rgb: 147, 51, 234;
+
+  /* Typography */
+  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --letter-spacing-tight: -0.01em;
+
+  /* Spacing */
+  --space-0: 0;
+  --space-1: 1px;
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-base: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
+    0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04),
+    0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-gray-400-rgb: 119, 124, 124;
+    --color-teal-300-rgb: 50, 184, 198;
+    --color-gray-300-rgb: 167, 169, 169;
+    --color-gray-200-rgb: 245, 245, 245;
+
+    --color-bg-1: rgba(29, 78, 216, 0.15);
+    --color-bg-2: rgba(180, 83, 9, 0.15);
+    --color-bg-3: rgba(21, 128, 61, 0.15);
+    --color-bg-4: rgba(185, 28, 28, 0.15);
+    --color-bg-5: rgba(107, 33, 168, 0.15);
+    --color-bg-6: rgba(194, 65, 12, 0.15);
+    --color-bg-7: rgba(190, 24, 93, 0.15);
+    --color-bg-8: rgba(8, 145, 178, 0.15);
+
+    --color-background: var(--color-charcoal-700);
+    --color-surface: var(--color-charcoal-800);
+    --color-text: var(--color-gray-200);
+    --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+    --color-primary: var(--color-teal-300);
+    --color-primary-hover: var(--color-teal-400);
+    --color-primary-active: var(--color-teal-800);
+    --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+    --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+    --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-btn-primary-text: var(--color-slate-900);
+    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+    --color-accent-light: rgba(147, 51, 234, 0.2);
+  }
+}
+
+@font-face {
+  font-family: 'FKGroteskNeue';
+  src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2')
+    format('woff2');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: var(--font-size-base);
+    font-family: var(--font-family-base);
+    line-height: var(--line-height-normal);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.screen {
+    display: none;
+    min-height: 100vh;
+    padding: var(--space-32) var(--space-16);
+}
+
+.screen.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.screen-welcome,
+.screen-instructions {
+    text-align: center;
+}
+
+.logo {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-accent);
+    margin-bottom: var(--space-32);
+}
+
+.heading-xl {
+    font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-4xl));
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--space-24);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+.subheading {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-32);
+    line-height: 1.6;
+}
+
+.instructions-text {
+    font-size: var(--font-size-lg);
+    color: var(--color-text);
+    line-height: 1.8;
+    margin-bottom: var(--space-32);
+    padding: var(--space-24);
+    background-color: var(--color-accent-light);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(var(--color-accent-rgb), 0.2);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-16) var(--space-32);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-standard);
+    border: none;
+    text-decoration: none;
+    min-width: 200px;
+}
+
+.btn-primary {
+    background: var(--color-accent);
+    color: var(--color-white);
+}
+
+.btn-primary:hover {
+    background: rgba(var(--color-accent-rgb), 0.9);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: var(--color-secondary);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+    background: var(--color-secondary-hover);
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* Checklist Screen */
+.checklist-container {
+    width: 100%;
+}
+
+.question-block {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-24);
+    margin-bottom: var(--space-24);
+}
+
+.block-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-8);
+}
+
+.block-question {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--space-20);
+}
+
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+}
+
+.option-item {
+    display: flex;
+    align-items: flex-start;
+    padding: var(--space-16);
+    background-color: var(--color-background);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-base);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.option-item:hover {
+    border-color: var(--color-accent);
+    background-color: var(--color-accent-light);
+}
+
+.option-item.selected {
+    border-color: var(--color-accent);
+    background-color: var(--color-accent-light);
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    margin-right: var(--space-12);
+    cursor: pointer;
+    accent-color: var(--color-accent);
+}
+
+.option-text {
+    font-size: var(--font-size-lg);
+    color: var(--color-text);
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.checklist-footer {
+    text-align: center;
+    margin-top: var(--space-32);
+}
+
+.error-message {
+    color: var(--color-error);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-16);
+    padding: var(--space-12);
+    background-color: rgba(var(--color-error-rgb), 0.1);
+    border-radius: var(--radius-base);
+    border: 1px solid rgba(var(--color-error-rgb), 0.2);
+}
+
+.error-message.hidden {
+    display: none;
+}
+
+/* Results Screen */
+.results-container {
+    text-align: center;
+}
+
+.result-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-32);
+    margin-bottom: var(--space-32);
+}
+
+.result-heading {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--space-24);
+}
+
+.result-text {
+    font-size: var(--font-size-lg);
+    color: var(--color-text);
+    line-height: 1.8;
+}
+
+.result-emoji {
+    font-size: 48px;
+    margin-bottom: var(--space-16);
+}
+
+/* About Section */
+.about-container {
+    text-align: center;
+}
+
+.about-heading {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--space-24);
+}
+
+.about-text {
+    font-size: var(--font-size-lg);
+    color: var(--color-text);
+    line-height: 1.8;
+    margin-bottom: var(--space-32);
+}
+
+.about-cta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    align-items: center;
+    margin-bottom: var(--space-32);
+}
+
+.about-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-8);
+    padding: var(--space-12) var(--space-16);
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(50, 184, 198, 0.1));
+    border: 1px solid rgba(147, 51, 234, 0.2);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+    font-weight: var(--font-weight-semibold);
+    margin-top: var(--space-16);
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 8px rgba(147, 51, 234, 0.3);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 16px rgba(147, 51, 234, 0.5);
+        transform: scale(1.02);
+    }
+}
+
+.star-icon {
+    font-size: 16px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: var(--space-32) var(--space-16);
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-text {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-16);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-24);
+    flex-wrap: wrap;
+}
+
+.footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-8);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.footer-link:hover {
+    color: var(--color-primary-hover);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .heading-xl {
+        font-size: var(--font-size-3xl);
+    }
+
+    .subheading {
+        font-size: var(--font-size-lg);
+    }
+
+    .btn {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .question-block {
+        padding: var(--space-20);
+    }
+
+    .block-question {
+        font-size: var(--font-size-lg);
+    }
+
+    .option-text {
+        font-size: var(--font-size-base);
+    }
+
+    .about-cta {
+        width: 100%;
+    }
+
+    .about-cta .btn {
+        width: 100%;
+    }
+}
+
+/* Smooth transitions */
+.screen {
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-standard);
+}
+
+.screen.active {
+    opacity: 1;
+}
+    </style>
+</head>
+<body>
+    <!-- Screen 1: Welcome -->
+    <div class="screen screen-welcome active" id="screen-welcome">
+        <div class="container">
+            <div class="logo">HR base</div>
+            <h1 class="heading-xl">Кого вам на самом деле нужно нанимать: джуниора, мидла или сеньора?</h1>
+            <p class="subheading">Интерактивный чек-лист для собственников и руководителей маркетплейс-проектов</p>
+            <button class="btn btn-primary" onclick="navigateToScreen('instructions')">Пройти чек-лист</button>
+        </div>
+    </div>
+
+    <!-- Screen 2: Instructions -->
+    <div class="screen screen-instructions" id="screen-instructions">
+        <div class="container">
+            <h2 class="heading-xl">Как работать с чек-листом</h2>
+            <p class="instructions-text">Отвечайте на вопросы честно. В конце вы получите подсказку: с каким уровнем специалиста вам лучше выходить на рынок — джуниор, мидл или сеньор.</p>
+            <button class="btn btn-primary" onclick="navigateToScreen('checklist')">Начать</button>
+        </div>
+    </div>
+
+    <!-- Screen 3: Checklist -->
+    <div class="screen screen-checklist" id="screen-checklist">
+        <div class="container">
+            <h2 class="heading-xl" style="text-align: center; margin-bottom: var(--space-32);">Ответьте на вопросы</h2>
+            <div class="checklist-container" id="checklist-container">
+                <!-- Question blocks will be generated here -->
+            </div>
+            <div class="checklist-footer">
+                <div class="error-message hidden" id="error-message">Пожалуйста, ответьте на все вопросы</div>
+                <button class="btn btn-primary" onclick="calculateResults()">Получить результат</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 4: Results -->
+    <div class="screen screen-results" id="screen-results">
+        <div class="container">
+            <div class="results-container">
+                <div class="result-card" id="result-card">
+                    <!-- Result content will be inserted here -->
+                </div>
+                <button class="btn btn-secondary" onclick="restartChecklist()">Начать заново</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 5: About -->
+    <div class="screen screen-about" id="screen-about">
+        <div class="container">
+            <div class="about-container">
+                <h2 class="about-heading">Об HR base</h2>
+                <p class="about-text">HR base — агентство по подбору специалистов для маркетплейсов. Помогаем селлерам на Wildberries и Ozon находить менеджеров, аналитиков, операционщиков и руководителей, которые реально тянут бизнес вперёд.</p>
+                <div class="about-cta">
+                    <a href="https://t.me/HRbase_pro" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Обсудить найм с HR base</a>
+                    <div class="about-badge">
+                        <span class="star-icon">✨</span>
+                        Быстрый подбор за 7-14 дней
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="footer-content">
+            <p class="footer-text">HR base — подбор специалистов для маркетплейсов</p>
+            <div class="footer-links">
+                <a href="https://t.me/HRbasee" target="_blank" rel="noopener noreferrer" class="footer-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.5 2l-19 10 5.5 3 3 5.5 10-18.5z"></path>
+                        <path d="M7.5 12l6.5 6.5"></path>
+                    </svg>
+                    Telegram-канал
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Application state
+        const appState = {
+            currentScreen: 'welcome',
+            answers: {},
+            scores: {
+                junior: 0,
+                mid: 0,
+                senior: 0
+            }
+        };
+
+        // Question data
+        const checklistData = [
+            {
+                id: 'hiring_goal',
+                title: 'Цель найма',
+                question: 'Что вы хотите получить через 3–6 месяцев?',
+                options: [
+                    { text: 'Снять с себя рутину и операционку.', junior: 3, mid: 0, senior: 0 },
+                    { text: 'Сделать текущие процессы стабильнее и понятнее.', junior: 0, mid: 3, senior: 0 },
+                    { text: 'Получить новый рост: выручка, маржа, новые площадки.', junior: 0, mid: 0, senior: 3 },
+                    { text: 'Передать ответственность за направление одному человеку.', junior: 0, mid: 0, senior: 3 }
+                ]
+            },
+            {
+                id: 'current_state',
+                title: 'Состояние направления',
+                question: 'В каком состоянии сейчас задачи и процессы?',
+                options: [
+                    { text: 'Процессы описаны, нужно добавить рук.', junior: 2, mid: 0, senior: 0 },
+                    { text: 'Всё держится на одном-двух людях, хочется навести порядок.', junior: 0, mid: 2, senior: 0 },
+                    { text: 'Направления по сути нет, нужно запускать с нуля.', junior: 0, mid: 0, senior: 3 }
+                ]
+            },
+            {
+                id: 'training_resources',
+                title: 'Ресурс на обучение',
+                question: 'Сколько у вас времени на обучение нового человека?',
+                options: [
+                    { text: 'Есть наставник и 1–2 месяца на обучение.', junior: 3, mid: 0, senior: 0 },
+                    { text: 'Смогу уделять немного времени на старте, дальше человек сам.', junior: 0, mid: 2, senior: 0 },
+                    { text: 'Времени нет, нужен результат как можно быстрее.', junior: 0, mid: 0, senior: 3 }
+                ]
+            },
+            {
+                id: 'mistake_cost',
+                title: 'Цена ошибки',
+                question: 'Насколько для вас критичны ошибки нового сотрудника?',
+                options: [
+                    { text: 'Ошибки неприятны, но не критичны, их можно поправить.', junior: 3, mid: 0, senior: 0 },
+                    { text: 'Ошибки нежелательны, но бизнес не разрушат.', junior: 0, mid: 2, senior: 0 },
+                    { text: 'Ошибки критичны: большие бюджеты, ключевые клиенты, высокая ставка.', junior: 0, mid: 0, senior: 3 }
+                ]
+            },
+            {
+                id: 'role_in_system',
+                title: 'Роль человека в системе',
+                question: 'Какую роль должен играть человек?',
+                options: [
+                    { text: 'Исполнять понятные задачи по регламентам.', junior: 3, mid: 0, senior: 0 },
+                    { text: 'Исполнять задачи и предлагать улучшения в существующей системе.', junior: 0, mid: 3, senior: 0 },
+                    { text: 'Строить систему, принимать решения и отвечать за результат направления.', junior: 0, mid: 0, senior: 3 }
+                ]
+            }
+        ];
+
+        // Results content
+        const resultsContent = {
+            junior: {
+                emoji: '🚀',
+                heading: 'Вам подойдёт специалист уровня джуниор',
+                text: 'Это человек, которого вы сможете вырастить под свои процессы, если готовы инвестировать время в обучение. Джуниор — отличный выбор, если у вас есть наставник и понимание, как развивать человека.'
+            },
+            mid: {
+                emoji: '💼',
+                heading: 'Смотрите в сторону мидла',
+                text: 'Это самостоятельный исполнитель, который разберётся в задачах и поможет навести порядок без построения отдела с нуля. Мидл — ваш вариант, если нужна стабильность и опыт, без необходимости в обучении с нуля.'
+            },
+            senior: {
+                emoji: '🎯',
+                heading: 'Вам нужен сеньор или руководитель направления',
+                text: 'Это человек, который берёт на себя систему, решения и ответственность за результат. Сеньор — правильный выбор, если нет времени на обучение и нужен немедленный результат.'
+            }
+        };
+
+        // Initialize checklist
+        function initializeChecklist() {
+            const container = document.getElementById('checklist-container');
+            container.innerHTML = '';
+
+            checklistData.forEach((block, blockIndex) => {
+                const blockDiv = document.createElement('div');
+                blockDiv.className = 'question-block';
+                blockDiv.innerHTML = `
+                    <div class="block-title">${block.title}</div>
+                    <div class="block-question">${block.question}</div>
+                    <div class="options-list" id="options-${block.id}">
+                        ${block.options.map((option, optionIndex) => `
+                            <label class="option-item" for="${block.id}-${optionIndex}">
+                                <div class="checkbox-wrapper">
+                                    <input 
+                                        type="checkbox" 
+                                        id="${block.id}-${optionIndex}" 
+                                        name="${block.id}"
+                                        data-block-id="${block.id}"
+                                        data-junior="${option.junior}"
+                                        data-mid="${option.mid}"
+                                        data-senior="${option.senior}"
+                                        onchange="handleCheckboxChange(this)"
+                                    >
+                                    <span class="option-text">${option.text}</span>
+                                </div>
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(blockDiv);
+            });
+        }
+
+        // Handle checkbox change
+        function handleCheckboxChange(checkbox) {
+            const blockId = checkbox.dataset.blockId;
+            const checkboxes = document.querySelectorAll(`input[name="${blockId}"]`);
+            
+            // Uncheck other checkboxes in the same block
+            checkboxes.forEach(cb => {
+                if (cb !== checkbox) {
+                    cb.checked = false;
+                    cb.parentElement.parentElement.classList.remove('selected');
+                }
+            });
+
+            // Update selected state
+            if (checkbox.checked) {
+                checkbox.parentElement.parentElement.classList.add('selected');
+                appState.answers[blockId] = {
+                    junior: parseInt(checkbox.dataset.junior),
+                    mid: parseInt(checkbox.dataset.mid),
+                    senior: parseInt(checkbox.dataset.senior)
+                };
+            } else {
+                checkbox.parentElement.parentElement.classList.remove('selected');
+                delete appState.answers[blockId];
+            }
+
+            // Hide error message if visible
+            document.getElementById('error-message').classList.add('hidden');
+        }
+
+        // Calculate results
+        function calculateResults() {
+            // Check if all questions are answered
+            if (Object.keys(appState.answers).length < checklistData.length) {
+                document.getElementById('error-message').classList.remove('hidden');
+                return;
+            }
+
+            // Calculate scores
+            appState.scores = { junior: 0, mid: 0, senior: 0 };
+            Object.values(appState.answers).forEach(answer => {
+                appState.scores.junior += answer.junior;
+                appState.scores.mid += answer.mid;
+                appState.scores.senior += answer.senior;
+            });
+
+            // Determine result
+            let result = 'mid';
+            if (appState.scores.junior > appState.scores.mid && appState.scores.junior > appState.scores.senior) {
+                result = 'junior';
+            } else if (appState.scores.senior > appState.scores.mid && appState.scores.senior > appState.scores.junior) {
+                result = 'senior';
+            }
+
+            // Display result
+            displayResult(result);
+            navigateToScreen('results');
+            
+            // Scroll to about section after a delay
+            setTimeout(() => {
+                const aboutSection = document.getElementById('screen-about');
+                aboutSection.classList.add('active');
+                aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 500);
+        }
+
+        // Display result
+        function displayResult(resultType) {
+            const resultCard = document.getElementById('result-card');
+            const content = resultsContent[resultType];
+            
+            resultCard.innerHTML = `
+                <div class="result-emoji">${content.emoji}</div>
+                <h2 class="result-heading">${content.heading}</h2>
+                <p class="result-text">${content.text}</p>
+            `;
+        }
+
+        // Navigate to screen
+        function navigateToScreen(screenName) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+
+            // Show target screen
+            const targetScreen = document.getElementById(`screen-${screenName}`);
+            targetScreen.classList.add('active');
+            
+            // Update state
+            appState.currentScreen = screenName;
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Restart checklist
+        function restartChecklist() {
+            // Reset state
+            appState.answers = {};
+            appState.scores = { junior: 0, mid: 0, senior: 0 };
+
+            // Hide about section
+            document.getElementById('screen-about').classList.remove('active');
+
+            // Reset checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.checked = false;
+                cb.parentElement.parentElement.classList.remove('selected');
+            });
+
+            // Navigate to welcome screen
+            navigateToScreen('welcome');
+        }
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeChecklist();
+        });
+    </script>
+</body>
+</html>
